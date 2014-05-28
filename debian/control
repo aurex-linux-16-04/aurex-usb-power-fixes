@@ -1,0 +1,13 @@
+Source: aurex-usb-power-fixes
+Section: admin
+Priority: optional
+Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
+Build-Depends: debhelper (>= 7.0)
+Standards-Version: 3.8.4
+
+Package: aurex-usb-power-fixes
+Architecture: all
+Depends: ${misc:Depends}, udev
+Description: disable power suspension for some usb devices
+ Fixes usb power suspension issues with some poorly designed devices like
+ C3PO keyboard integrated card reader

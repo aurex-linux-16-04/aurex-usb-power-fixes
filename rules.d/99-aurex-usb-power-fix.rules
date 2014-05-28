@@ -1,0 +1,21 @@
+# udev rules to set the access rights of CCID smart card readers
+# so they can be used by pcscd
+
+# $Id: 92_pcscd_ccid.rules 5706 2011-04-22 14:37:45Z rousseau $
+
+# Gemplus PCMCIA Card
+#SUBSYSTEMS=="pcmcia", DRIVERS=="serial_cs", ACTION=="add", ATTRS{prod_id1}=="Gemplus", ATTRS{prod_id2}=="SerialPort", ATTRS{prod_id3}=="GemPC Card", RUN+="/usr/sbin/pcscd --hotplug" 
+
+# If not adding the device, go away
+ACTION!="add", GOTO="pcscd_ccid_rules_end"
+SUBSYSTEM!="usb", GOTO="pcscd_ccid_rules_end"
+ENV{DEVTYPE}!="usb_device", GOTO="pcscd_ccid_rules_end"
+
+
+# set USB power management to auto. "power/level" has been deprecated in
+# Linux 2.6.35 and replaced by "power/control"
+ENV{ID_USB_INTERFACES}=="*:0b0000:*", RUN+="/bin/sh -c 'sleep 1 ; echo on > /sys/$devpath/power/level ; echo on > /sys/$devpath/power/control ; cat /sys/$devpath/power/level >> /tmp/udev.log'"
+
+
+# All done
+LABEL="pcscd_ccid_rules_end"
