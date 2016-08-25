@@ -1,3 +1,9 @@
+aurex-usb-power-fixes (0.3) xenial; urgency=medium
+
+  * Rebuild for xenial
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 25 Aug 2016 12:28:30 +0200
+
 aurex-usb-power-fixes (0.2) trusty; urgency=medium
 
   * Rebuild for aurex 14.04 trusty
